@@ -1,10 +1,9 @@
 package config
 
 import (
-"github.com/jinzhu/gorm"
-	"github.com/jinzhu/gorm/dialects/mysql"
+	"book_store/pkg/models"
 
-
+	"github.com/jinzhu/gorm"
 )
 
 var db * gorm.DB
@@ -20,6 +19,7 @@ func Connect(){
 	}
 
 	db=d
+	models.SetDB(db)
 }
 
 func GetDB() *gorm.DB{

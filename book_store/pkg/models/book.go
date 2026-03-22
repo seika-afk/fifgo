@@ -2,7 +2,6 @@ package models
 
 import (
   "github.com/jinzhu/gorm"
-  "book_store/pkg/config"
 )
 
 
@@ -15,14 +14,9 @@ type Book struct{
     Publication string `json:"publication"`
 
   }
-
-
-func init(){
-  config.Connect()
-  db= config.GetDB()
-  db.AutoMigrate(&Book{})
-
-  }
+func SetDB(d *gorm.DB) {
+    db = d
+}
 
 func (b* Book ) CreateBook () *Book{
 
