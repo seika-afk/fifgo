@@ -2,9 +2,7 @@ package main
 import (
 	"github.com/gorilla/mux"
 	"net/http"
-	"gopkg.in/mgo.v2"
-
-	"gmg/controllers"
+	"log"
 
 	"gmg/routes"
 
@@ -14,11 +12,12 @@ import (
 
 func main(){
 
+//Creating a router 
 
 	r:=mux.NewRouter()
-	uc := controllers.NewUserController(getSession())
-	//route all the routes
-	routes.RegisterRouter(r)
+	
+//route all the routes
+	routes.RegisterRoutes(r)
 
 
 	
@@ -30,10 +29,3 @@ func main(){
 
 }
 
-func getSession() *mgo.Session{
-	s,err:=mgo.Dial("mongodb://localhost:27107")	
-	if err != nil{
-			panic(err)
-	}
-return s
-}
